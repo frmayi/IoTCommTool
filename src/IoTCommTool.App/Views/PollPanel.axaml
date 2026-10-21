@@ -1,0 +1,33 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:IoTCommTool.App.ViewModels"
+             x:Class="IoTCommTool.App.Views.PollPanel"
+             x:DataType="vm:PollingViewModelBase">
+    <Border Classes="inset">
+        <StackPanel Spacing="8">
+            <StackPanel Spacing="1">
+                <TextBlock Classes="section" Text="周期轮询" />
+                <TextBlock Classes="fieldHint" Text="按固定间隔重复执行当前读操作" />
+            </StackPanel>
+            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
+                <StackPanel Classes="field">
+                    <TextBlock Classes="fieldLabel" Text="间隔（ms）" />
+                    <TextBox Text="{Binding PollIntervalMs, Mode=TwoWay}" />
+                </StackPanel>
+                <Button Grid.Column="1"
+                        Classes="primary"
+                        Content="开始"
+                        Command="{Binding StartPollCommand}"
+                        IsEnabled="{Binding CanStartPoll}"
+                        VerticalAlignment="Bottom" />
+                <Button Grid.Column="2"
+                        Classes="danger"
+                        Content="停止"
+                        Command="{Binding StopPollCommand}"
+                        IsEnabled="{Binding IsPolling}"
+                        VerticalAlignment="Bottom" />
+            </Grid>
+            <TextBlock Classes="caption" Text="{Binding PollStatsText}" />
+        </StackPanel>
+    </Border>
+</UserControl>

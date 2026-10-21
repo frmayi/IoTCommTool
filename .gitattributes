@@ -1,0 +1,5 @@
+# Keep text sources in LF. Windows batch files must remain CRLF.
+* text=auto eol=lf
+*.bat text eol=crlf
+*.ico binary
+*.png binary

@@ -1,0 +1,137 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:IoTCommTool.App.ViewModels"
+             xmlns:views="using:IoTCommTool.App.Views"
+             x:Class="IoTCommTool.App.Views.S7View"
+             x:DataType="vm:S7ViewModel">
+    <Grid RowDefinitions="Auto,*">
+        <Border Grid.Row="0" Classes="card" Margin="0,0,0,12">
+            <StackPanel Spacing="14">
+                <Grid ColumnDefinitions="*,Auto">
+                    <StackPanel Spacing="2" VerticalAlignment="Center">
+                        <TextBlock Classes="cardTitle" Text="Siemens S7" />
+                        <TextBlock Classes="caption" Text="连接 S7-300/400/1200/1500，读写 DB、M、I、Q 区" />
+                    </StackPanel>
+                    <views:ConnectionActions Grid.Column="1" />
+                </Grid>
+
+                <StackPanel Spacing="12" IsEnabled="{Binding IsFormEnabled}">
+                    <Grid ColumnDefinitions="2*,3*,*" ColumnSpacing="12">
+                        <StackPanel Classes="field">
+                            <TextBlock Classes="fieldLabel" Text="名称" />
+                            <TextBox Text="{Binding Title, Mode=TwoWay}" PlaceholderText="PLC 连接名称" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Classes="field">
+                            <TextBlock Classes="fieldLabel" Text="主机" />
+                            <TextBox Text="{Binding Host, Mode=TwoWay}" PlaceholderText="192.168.0.1" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Classes="field">
+                            <TextBlock Classes="fieldLabel" Text="端口" />
+                            <TextBox Text="{Binding Port, Mode=TwoWay}" PlaceholderText="102" />
+                        </StackPanel>
+                    </Grid>
+                    <Grid ColumnDefinitions="2*,*,*" ColumnSpacing="12">
+                        <StackPanel Classes="field">
+                            <TextBlock Classes="fieldLabel" Text="CPU 类型" />
+                            <ComboBox ItemsSource="{Binding CpuTypes}"
+                                      SelectedIndex="{Binding CpuTypeIndex, Mode=TwoWay}" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Classes="field">
+                            <TextBlock Classes="fieldLabel" Text="机架" />
+                            <TextBox Text="{Binding Rack, Mode=TwoWay}" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Classes="field">
+                            <TextBlock Classes="fieldLabel" Text="插槽" />
+                            <TextBox Text="{Binding Slot, Mode=TwoWay}" />
+                        </StackPanel>
+                    </Grid>
+                    <TextBlock Classes="fieldHint"
+                               Text="S7-1200/1500 需在 TIA Portal 中开启“允许来自远程对象的 PUT/GET 通信访问”；S7-300/400 默认机架/插槽为 0/2。" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400" MinWidth="380" MaxWidth="520" />
+                <ColumnDefinition Width="4" />
+                <ColumnDefinition Width="*" MinWidth="360" />
+            </Grid.ColumnDefinitions>
+
+            <ScrollViewer Grid.Column="0"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+                <Border Classes="card">
+                    <StackPanel Spacing="12">
+                        <StackPanel Spacing="2">
+                            <TextBlock Classes="cardTitle" Text="读写操作" />
+                            <TextBlock Classes="caption" Text="读取结果与写入状态显示在下方" />
+                        </StackPanel>
+
+                        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto"
+                              ColumnSpacing="12" RowSpacing="10">
+                            <StackPanel Classes="field">
+                                <TextBlock Classes="fieldLabel" Text="区域" />
+                                <ComboBox ItemsSource="{Binding Areas}"
+                                          SelectedIndex="{Binding AreaIndex, Mode=TwoWay}" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Classes="field">
+                                <TextBlock Classes="fieldLabel" Text="DB 号" />
+                                <TextBox Text="{Binding DbNumber, Mode=TwoWay}"
+                                         IsEnabled="{Binding IsDbArea}" />
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Classes="field">
+                                <TextBlock Classes="fieldLabel" Text="起始地址" />
+                                <TextBox Text="{Binding StartAddress, Mode=TwoWay}" />
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Grid.Column="1" Classes="field">
+                                <TextBlock Classes="fieldLabel" Text="位号" />
+                                <TextBox Text="{Binding BitIndex, Mode=TwoWay}"
+                                         IsEnabled="{Binding IsBoolType}" />
+                            </StackPanel>
+                            <StackPanel Grid.Row="2" Classes="field">
+                                <TextBlock Classes="fieldLabel" Text="数据类型" />
+                                <ComboBox ItemsSource="{Binding DataTypes}"
+                                          SelectedIndex="{Binding DataTypeIndex, Mode=TwoWay}" />
+                            </StackPanel>
+                            <StackPanel Grid.Row="2" Grid.Column="1" Classes="field">
+                                <TextBlock Classes="fieldLabel" Text="{Binding CountOrValueLabel}" />
+                                <TextBox Text="{Binding CountOrValue, Mode=TwoWay}"
+                                         PlaceholderText="数量或写入值" />
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                            <Button Classes="primary"
+                                    Content="读取"
+                                    Command="{Binding ReadCommand}"
+                                    IsEnabled="{Binding IsConnected}" />
+                            <Button Grid.Column="1"
+                                    Classes="primary"
+                                    Content="写入"
+                                    Command="{Binding WriteCommand}"
+                                    IsEnabled="{Binding IsConnected}" />
+                        </Grid>
+
+                        <Border Classes="inset" Padding="10,8">
+                            <TextBox Text="{Binding ResultText}"
+                                     IsReadOnly="True"
+                                     AcceptsReturn="True"
+                                     MinHeight="110"
+                                     FontFamily="Cascadia Mono, Consolas, Menlo, monospace"
+                                     FontSize="12"
+                                     Background="Transparent"
+                                     BorderThickness="0"
+                                     PlaceholderText="结果显示（byte[] 同时显示 Hex 和 ASCII）" />
+                        </Border>
+
+                        <views:PollPanel />
+                    </StackPanel>
+                </Border>
+            </ScrollViewer>
+
+            <GridSplitter Grid.Column="1" Classes="splitter" />
+            <views:LogPanel Grid.Column="2" />
+        </Grid>
+    </Grid>
+</UserControl>

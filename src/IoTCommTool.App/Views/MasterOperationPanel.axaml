@@ -1,0 +1,63 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:IoTCommTool.App.ViewModels"
+             xmlns:views="using:IoTCommTool.App.Views"
+             x:Class="IoTCommTool.App.Views.MasterOperationPanel"
+             x:DataType="vm:ModbusMasterViewModelBase">
+    <Border Classes="card">
+        <StackPanel Spacing="12">
+            <StackPanel Spacing="2">
+                <TextBlock Classes="cardTitle" Text="主站操作" />
+                <TextBlock Classes="caption" Text="地址从 0 开始；写操作用英文逗号分隔多个值" />
+            </StackPanel>
+
+            <StackPanel Classes="field">
+                <TextBlock Classes="fieldLabel" Text="功能码" />
+                <ComboBox ItemsSource="{Binding FunctionCodes}"
+                          SelectedIndex="{Binding FunctionCodeIndex, Mode=TwoWay}" />
+            </StackPanel>
+
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="12">
+                <StackPanel Classes="field">
+                    <TextBlock Classes="fieldLabel" Text="站号" />
+                    <TextBox Text="{Binding UnitId, Mode=TwoWay}" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Classes="field">
+                    <TextBlock Classes="fieldLabel" Text="起始地址" />
+                    <TextBox Text="{Binding StartAddress, Mode=TwoWay}" />
+                </StackPanel>
+                <StackPanel Grid.Column="2" Classes="field">
+                    <TextBlock Classes="fieldLabel" Text="数量" />
+                    <TextBox Text="{Binding Count, Mode=TwoWay}" />
+                </StackPanel>
+            </Grid>
+
+            <StackPanel Classes="field">
+                <TextBlock Classes="fieldLabel" Text="写入值" />
+                <TextBox Text="{Binding ValuesText, Mode=TwoWay}"
+                         IsEnabled="{Binding IsWriteFunction}"
+                         PlaceholderText="写操作使用；如 1,0,1 或 100,200" />
+            </StackPanel>
+
+            <Button Classes="primary"
+                    Content="{Binding ExecuteButtonText}"
+                    Command="{Binding ExecuteCommand}"
+                    IsEnabled="{Binding IsConnected}"
+                    HorizontalAlignment="Stretch" />
+
+            <Border Classes="inset" Padding="8">
+                <TextBox Text="{Binding ResultText}"
+                         IsReadOnly="True"
+                         AcceptsReturn="True"
+                         MinHeight="110"
+                         FontFamily="Cascadia Mono, Consolas, Menlo, monospace"
+                         FontSize="12"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         PlaceholderText="执行结果" />
+            </Border>
+
+            <views:PollPanel />
+        </StackPanel>
+    </Border>
+</UserControl>

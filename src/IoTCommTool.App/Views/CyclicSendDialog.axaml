@@ -1,0 +1,82 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:IoTCommTool.App.ViewModels"
+        x:Class="IoTCommTool.App.Views.CyclicSendDialog"
+        x:DataType="vm:RawConnectionViewModelBase"
+        Title="循环发送"
+        Width="480"
+        SizeToContent="Height"
+        CanResize="False"
+        WindowStartupLocation="CenterOwner"
+        Background="{DynamicResource IotBackground}">
+    <Border Classes="card" Margin="16">
+        <StackPanel Spacing="12">
+            <StackPanel Spacing="2">
+                <TextBlock Classes="cardTitle" Text="循环发送" />
+                <TextBlock Classes="caption" Text="报文内容使用主发送区当前内容；可选附加序号。" />
+            </StackPanel>
+
+            <StackPanel Classes="field">
+                <TextBlock Classes="fieldLabel" Text="发送模式" />
+                <ComboBox ItemsSource="{Binding CycleModes}"
+                          SelectedIndex="{Binding CycleModeIndex, Mode=TwoWay}"
+                          PlaceholderText="请选择模式…" />
+            </StackPanel>
+
+            <StackPanel IsVisible="{Binding ShowCycleParams}" Spacing="10">
+                <StackPanel Classes="field" IsVisible="{Binding ShowInterval}">
+                    <TextBlock Classes="fieldLabel" Text="间隔（ms）" />
+                    <TextBox Text="{Binding IntervalMs, Mode=TwoWay}" />
+                </StackPanel>
+                <StackPanel Classes="field" IsVisible="{Binding ShowDuration}">
+                    <TextBlock Classes="fieldLabel" Text="总时长（s）" />
+                    <TextBox Text="{Binding DurationSec, Mode=TwoWay}" />
+                </StackPanel>
+                <StackPanel Classes="field" IsVisible="{Binding ShowPerSecond}">
+                    <TextBlock Classes="fieldLabel" Text="每秒次数" />
+                    <TextBox Text="{Binding PerSecondCountText, Mode=TwoWay}" />
+                </StackPanel>
+                <StackPanel Classes="field" IsVisible="{Binding ShowMinMaxInterval}">
+                    <TextBlock Classes="fieldLabel" Text="间隔范围（ms）" />
+                    <Grid ColumnDefinitions="*,Auto,*" ColumnSpacing="8">
+                        <TextBox Text="{Binding MinIntervalMs, Mode=TwoWay}" PlaceholderText="最小" />
+                        <TextBlock Grid.Column="1" Classes="caption" Text="~" VerticalAlignment="Center" />
+                        <TextBox Grid.Column="2" Text="{Binding MaxIntervalMs, Mode=TwoWay}" PlaceholderText="最大" />
+                    </Grid>
+                </StackPanel>
+                <StackPanel Classes="field">
+                    <TextBlock Classes="fieldLabel" Text="次数（0 = 不限）" />
+                    <TextBox Text="{Binding CountText, Mode=TwoWay}" />
+                </StackPanel>
+                <CheckBox Content="附加 4 字节序号" IsChecked="{Binding CycleAppendSequence}" />
+            </StackPanel>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                <Button Classes="primary"
+                        Content="开始"
+                        Command="{Binding StartCycleCommand}"
+                        IsEnabled="{Binding CanStartCycle}" />
+                <Button Grid.Column="1"
+                        Classes="ghost"
+                        Content="停止"
+                        Command="{Binding StopCycleCommand}"
+                        IsEnabled="{Binding IsCycling}" />
+            </Grid>
+
+            <TextBlock Classes="caption" Text="{Binding CycleProgressText}" />
+
+            <Border Classes="inset" Padding="10,8">
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                    <TextBlock Text="{Binding StatsText}"
+                               Classes="caption"
+                               TextWrapping="Wrap"
+                               VerticalAlignment="Center" />
+                    <Button Grid.Column="1"
+                            Classes="ghost small"
+                            Content="清零"
+                            Command="{Binding ResetStatsCommand}" />
+                </Grid>
+            </Border>
+        </StackPanel>
+    </Border>
+</Window>

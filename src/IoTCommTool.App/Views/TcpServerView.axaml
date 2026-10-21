@@ -1,0 +1,91 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:IoTCommTool.App.ViewModels"
+             xmlns:views="using:IoTCommTool.App.Views"
+             xmlns:models="using:IoTCommTool.App.Models"
+             x:Class="IoTCommTool.App.Views.TcpServerView"
+             x:DataType="vm:TcpServerViewModel">
+    <Grid RowDefinitions="Auto,*">
+        <Border Grid.Row="0" Classes="card" Margin="0,0,0,12">
+            <StackPanel Spacing="14">
+                <Grid ColumnDefinitions="*,Auto">
+                    <StackPanel Spacing="2" VerticalAlignment="Center">
+                        <TextBlock Classes="cardTitle" Text="TCP 服务端" />
+                        <TextBlock Classes="caption" Text="监听端口，接受多个客户端会话" />
+                    </StackPanel>
+                    <views:ConnectionActions Grid.Column="1" />
+                </Grid>
+
+                <Grid ColumnDefinitions="2*,2*,*" ColumnSpacing="12"
+                      IsEnabled="{Binding IsFormEnabled}">
+                    <StackPanel Classes="field">
+                        <TextBlock Classes="fieldLabel" Text="名称" />
+                        <TextBox Text="{Binding Title, Mode=TwoWay}" PlaceholderText="连接名称" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Classes="field">
+                        <TextBlock Classes="fieldLabel" Text="监听地址" />
+                        <ComboBox ItemsSource="{Binding LocalIpChoices}"
+                                  SelectedItem="{Binding SelectedListenAddress, Mode=TwoWay}"
+                                  ToolTip.Tip="所有网卡可同时接收有线和无线连接；指定 IP 只监听该网卡">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="models:LocalAddressOption">
+                                    <TextBlock Text="{Binding Display}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" Classes="field">
+                        <TextBlock Classes="fieldLabel" Text="监听端口" />
+                        <TextBox Text="{Binding Port, Mode=TwoWay}" PlaceholderText="5000" />
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400" MinWidth="380" MaxWidth="520" />
+                <ColumnDefinition Width="4" />
+                <ColumnDefinition Width="*" MinWidth="360" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" RowDefinitions="Auto,*" RowSpacing="12">
+                <Border Grid.Row="0" Classes="card" Padding="14,10">
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10" VerticalAlignment="Center">
+                        <StackPanel Spacing="1" VerticalAlignment="Center">
+                            <TextBlock Classes="section" Text="发送目标" />
+                            <TextBlock Classes="caption">
+                                <Run Text="会话 " /><Run Text="{Binding Sessions.Count}" />
+                            </TextBlock>
+                        </StackPanel>
+                        <ComboBox Grid.Column="1"
+                                  ItemsSource="{Binding Sessions}"
+                                  SelectedItem="{Binding SelectedSession, Mode=TwoWay}"
+                                  PlaceholderText="广播（所有会话）"
+                                  HorizontalAlignment="Stretch"
+                                  ToolTip.Tip="不选择会话时发送给所有客户端">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="vm:SessionItem">
+                                    <TextBlock FontSize="12" TextTrimming="CharacterEllipsis">
+                                        <Run Text="{Binding Name}" /><Run Text=" · " /><Run Text="{Binding RemoteEndpoint}" /><Run Text=" · 收 " /><Run Text="{Binding ReceivedCount}" />
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Button Grid.Column="2"
+                                Classes="danger small"
+                                Content="踢除"
+                                Command="{Binding KickSessionCommand}"
+                                IsEnabled="{Binding HasSelectedSession}"
+                                ToolTip.Tip="断开选中的客户端会话" />
+                    </Grid>
+                </Border>
+
+                <views:SendPanel Grid.Row="1" />
+            </Grid>
+
+            <GridSplitter Grid.Column="1" Classes="splitter" />
+            <views:LogPanel Grid.Column="2" />
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,47 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:IoTCommTool.App.ViewModels"
+             xmlns:views="using:IoTCommTool.App.Views"
+             x:Class="IoTCommTool.App.Views.ModbusRtuSlaveView"
+             x:DataType="vm:ModbusRtuSlaveViewModel">
+    <Grid RowDefinitions="Auto,*">
+        <Border Grid.Row="0" Classes="card" Margin="0,0,0,12">
+            <StackPanel Spacing="14">
+                <Grid ColumnDefinitions="*,Auto">
+                    <StackPanel Spacing="2" VerticalAlignment="Center">
+                        <TextBlock Classes="cardTitle" Text="Modbus RTU 从站" />
+                        <TextBlock Classes="caption" Text="通过串口模拟 Modbus RTU 从站" />
+                    </StackPanel>
+                    <views:ConnectionActions Grid.Column="1" />
+                </Grid>
+
+                <Border IsEnabled="{Binding IsFormEnabled}">
+                    <StackPanel Spacing="12">
+                        <Grid ColumnDefinitions="2*,*" ColumnSpacing="12">
+                            <StackPanel Classes="field">
+                                <TextBlock Classes="fieldLabel" Text="名称" />
+                                <TextBox Text="{Binding Title, Mode=TwoWay}" PlaceholderText="从站名称" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Classes="field">
+                                <TextBlock Classes="fieldLabel" Text="站号" />
+                                <TextBox Text="{Binding UnitId, Mode=TwoWay}" PlaceholderText="1" />
+                            </StackPanel>
+                        </Grid>
+                        <views:SerialSettingsPanel DataContext="{Binding Serial}" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400" MinWidth="380" MaxWidth="520" />
+                <ColumnDefinition Width="4" />
+                <ColumnDefinition Width="*" MinWidth="360" />
+            </Grid.ColumnDefinitions>
+            <views:SlaveRegisterPanel Grid.Column="0" />
+            <GridSplitter Grid.Column="1" Classes="splitter" />
+            <views:LogPanel Grid.Column="2" />
+        </Grid>
+    </Grid>
+</UserControl>

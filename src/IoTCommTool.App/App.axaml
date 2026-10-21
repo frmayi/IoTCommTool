@@ -1,0 +1,17 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="IoTCommTool.App.App"
+             xmlns:local="using:IoTCommTool.App"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <local:ViewLocator />
+    </Application.DataTemplates>
+
+    <Application.Styles>
+        <FluentTheme />
+        <StyleInclude Source="avares://IoTCommTool.App/Styles/Tokens.axaml" />
+        <StyleInclude Source="avares://IoTCommTool.App/Styles/Controls.axaml" />
+    </Application.Styles>
+</Application>

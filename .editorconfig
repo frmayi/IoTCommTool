@@ -1,0 +1,8 @@
+root = true
+
+# Keep source files portable; Windows batch files are the only CRLF exception.
+[*]
+end_of_line = lf
+
+[*.bat]
+end_of_line = crlf

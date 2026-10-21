@@ -1,0 +1,51 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:IoTCommTool.App.ViewModels"
+             xmlns:views="using:IoTCommTool.App.Views"
+             x:Class="IoTCommTool.App.Views.UdpView"
+             x:DataType="vm:UdpViewModel">
+    <Grid RowDefinitions="Auto,*">
+        <Border Grid.Row="0" Classes="card" Margin="0,0,0,12">
+            <StackPanel Spacing="14">
+                <Grid ColumnDefinitions="*,Auto">
+                    <StackPanel Spacing="2" VerticalAlignment="Center">
+                        <TextBlock Classes="cardTitle" Text="UDP" />
+                        <TextBlock Classes="caption" Text="绑定本地端口，收发数据报" />
+                    </StackPanel>
+                    <views:ConnectionActions Grid.Column="1" />
+                </Grid>
+
+                <Grid ColumnDefinitions="2*,*,2*,*" ColumnSpacing="12"
+                      IsEnabled="{Binding IsFormEnabled}">
+                    <StackPanel Classes="field">
+                        <TextBlock Classes="fieldLabel" Text="名称" />
+                        <TextBox Text="{Binding Title, Mode=TwoWay}" PlaceholderText="连接名称" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Classes="field">
+                        <TextBlock Classes="fieldLabel" Text="本地端口" />
+                        <TextBox Text="{Binding LocalPort, Mode=TwoWay}" PlaceholderText="5001" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" Classes="field">
+                        <TextBlock Classes="fieldLabel" Text="远端主机（可空）" />
+                        <TextBox Text="{Binding RemoteHost, Mode=TwoWay}" PlaceholderText="192.168.1.10" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="3" Classes="field">
+                        <TextBlock Classes="fieldLabel" Text="远端端口" />
+                        <TextBox Text="{Binding RemotePort, Mode=TwoWay}" PlaceholderText="5002" />
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400" MinWidth="380" MaxWidth="520" />
+                <ColumnDefinition Width="4" />
+                <ColumnDefinition Width="*" MinWidth="360" />
+            </Grid.ColumnDefinitions>
+            <views:SendPanel Grid.Column="0" />
+            <GridSplitter Grid.Column="1" Classes="splitter" />
+            <views:LogPanel Grid.Column="2" />
+        </Grid>
+    </Grid>
+</UserControl>

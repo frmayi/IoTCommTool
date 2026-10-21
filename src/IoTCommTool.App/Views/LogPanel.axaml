@@ -1,0 +1,62 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:IoTCommTool.App.ViewModels"
+             x:Class="IoTCommTool.App.Views.LogPanel"
+             x:DataType="vm:ConnectionViewModelBase">
+    <Border Classes="card">
+        <Grid RowDefinitions="Auto,*" RowSpacing="8">
+            <Grid Grid.Row="0" ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                <StackPanel Spacing="2" VerticalAlignment="Center">
+                    <TextBlock Classes="cardTitle" Text="日志 / 收发" />
+                    <TextBlock Classes="caption">
+                        <Run Text="{Binding LogCount}" /><Run Text=" 条记录" />
+                    </TextBlock>
+                </StackPanel>
+                <WrapPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <ToggleButton Classes="seg"
+                                  Content="Hex"
+                                  IsChecked="{Binding DisplayHex}"
+                                  IsVisible="{Binding SupportsHexToggle}"
+                                  Margin="0,0,6,0" />
+                    <ToggleButton x:Name="AutoScrollToggle"
+                                  Classes="seg"
+                                  Content="自动滚动"
+                                  IsChecked="True"
+                                  Margin="0,0,6,0"
+                                  Click="OnAutoScrollClick"
+                                  ToolTip.Tip="新日志到达时自动滚动到底部" />
+                    <Button Classes="ghost small"
+                            Content="复制"
+                            Margin="0,0,6,0"
+                            Click="OnCopyClick"
+                            ToolTip.Tip="复制当前日志" />
+                    <Button Classes="ghost small"
+                            Content="导出"
+                            Margin="0,0,6,0"
+                            Click="OnExportClick"
+                            ToolTip.Tip="导出为文本文件" />
+                    <Button Classes="ghost small"
+                            Content="清空"
+                            Command="{Binding ClearLogCommand}" />
+                </WrapPanel>
+            </Grid>
+
+            <Border Grid.Row="1" Classes="inset" Padding="4">
+                <ListBox x:Name="LogList"
+                         ItemsSource="{Binding LogLines}"
+                         FontFamily="Cascadia Mono, Consolas, Menlo, monospace"
+                         FontSize="12"
+                         Background="Transparent"
+                         BorderThickness="0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="x:String">
+                            <TextBlock Text="{Binding}"
+                                       TextWrapping="Wrap"
+                                       LineHeight="18" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

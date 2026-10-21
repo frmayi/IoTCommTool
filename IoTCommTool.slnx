@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/IoTCommTool.App/IoTCommTool.App.csproj" />
+    <Project Path="src/IoTCommTool.Core/IoTCommTool.Core.csproj" />
+    <Project Path="src/IoTCommTool.Infrastructure/IoTCommTool.Infrastructure.csproj" />
+  </Folder>
+</Solution>

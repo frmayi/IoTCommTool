@@ -1,0 +1,445 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+        <Style Selector="Border.card">
+        <Setter Property="Background" Value="{DynamicResource IotCardBg}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource IotBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="{DynamicResource IotCardCorner}" />
+        <Setter Property="Padding" Value="{DynamicResource IotCardPadding}" />
+    </Style>
+
+    <Style Selector="Border.sidebar">
+        <Setter Property="Background" Value="{DynamicResource IotSidebarBg}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource IotBorderBrush}" />
+        <Setter Property="BorderThickness" Value="0,0,1,0" />
+    </Style>
+
+    <Style Selector="Border.inset">
+        <Setter Property="Background" Value="{DynamicResource IotInsetBg}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource IotBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="{DynamicResource IotControlCorner}" />
+        <Setter Property="Padding" Value="10" />
+    </Style>
+
+    <Style Selector="Border.statusPill">
+        <Setter Property="Background" Value="{DynamicResource IotInsetBg}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource IotBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="{DynamicResource IotPillCorner}" />
+        <Setter Property="Padding" Value="10,4" />
+    </Style>
+
+    <Style Selector="Border.chip">
+        <Setter Property="Padding" Value="8,1" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="Background" Value="{DynamicResource IotAccentSubtleBrush}" />
+    </Style>
+
+    <Style Selector="Border.divider">
+        <Setter Property="Height" Value="1" />
+        <Setter Property="Background" Value="{DynamicResource IotBorderBrush}" />
+    </Style>
+
+    <Style Selector="TextBlock.section">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{DynamicResource IotTextPrimary}" />
+        <Setter Property="LineHeight" Value="20" />
+        <Setter Property="Margin" Value="0" />
+    </Style>
+
+    <Style Selector="TextBlock.cardTitle">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{DynamicResource IotTextPrimary}" />
+        <Setter Property="LineHeight" Value="22" />
+    </Style>
+
+    <Style Selector="TextBlock.caption">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="LineHeight" Value="16" />
+        <Setter Property="Foreground" Value="{DynamicResource IotTextSecondary}" />
+    </Style>
+
+    <Style Selector="TextBlock.fieldLabel">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="LineHeight" Value="16" />
+        <Setter Property="Foreground" Value="{DynamicResource IotTextSecondary}" />
+    </Style>
+
+    <Style Selector="TextBlock.fieldHint">
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="LineHeight" Value="15" />
+        <Setter Property="Foreground" Value="{DynamicResource IotTextSecondary}" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+    <Style Selector="TextBlock.inlineText">
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="{DynamicResource IotTextSecondary}" />
+    </Style>
+
+    <Style Selector="TextBlock.mono">
+        <Setter Property="FontFamily" Value="Cascadia Mono, Consolas, Menlo, monospace" />
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+
+    <Style Selector="TextBlock.chipText">
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="Foreground" Value="{DynamicResource IotAccentBrush}" />
+    </Style>
+
+    <Style Selector="StackPanel.field">
+        <Setter Property="Spacing" Value="6" />
+    </Style>
+
+    <Style Selector="Ellipse.statusDot">
+        <Setter Property="Width" Value="8" />
+        <Setter Property="Height" Value="8" />
+    </Style>
+
+    <Style Selector="Path.icon">
+        <Setter Property="Width" Value="16" />
+        <Setter Property="Height" Value="16" />
+        <Setter Property="Stretch" Value="Uniform" />
+        <Setter Property="Fill" Value="{DynamicResource IotTextSecondary}" />
+    </Style>
+
+    <Style Selector="Button">
+        <Setter Property="MinHeight" Value="36" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Padding" Value="14,0" />
+        <Setter Property="CornerRadius" Value="{DynamicResource IotControlCorner}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+    <Style Selector="Button:disabled">
+        <Setter Property="Opacity" Value="0.5" />
+    </Style>
+
+    <Style Selector="Button.primary">
+        <Setter Property="Background" Value="{DynamicResource IotAccentBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource IotOnAccentBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+    <Style Selector="Button.primary:pointerover">
+        <Setter Property="Background" Value="{DynamicResource IotAccentHoverBrush}" />
+    </Style>
+    <Style Selector="Button.primary:pressed">
+        <Setter Property="Background" Value="{DynamicResource IotAccentPressedBrush}" />
+    </Style>
+
+    <Style Selector="Button.ghost">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource IotTextPrimary}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource IotBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    <Style Selector="Button.ghost:pointerover">
+        <Setter Property="Background" Value="{DynamicResource IotCardHoverBg}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource IotAccentBrush}" />
+    </Style>
+    <Style Selector="Button.ghost:pressed">
+        <Setter Property="Background" Value="{DynamicResource IotAccentSubtleBrush}" />
+    </Style>
+
+    <Style Selector="Button.danger">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource IotDangerBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource IotDangerBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    <Style Selector="Button.danger:pointerover">
+        <Setter Property="Background" Value="{DynamicResource IotDangerBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource IotOnAccentBrush}" />
+    </Style>
+    <Style Selector="Button.danger:pressed">
+        <Setter Property="Background" Value="{DynamicResource IotDangerPressedBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource IotOnAccentBrush}" />
+    </Style>
+
+    <Style Selector="Button.small">
+        <Setter Property="MinHeight" Value="28" />
+        <Setter Property="Padding" Value="10,0" />
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+
+    <Style Selector="Button.link">
+        <Setter Property="MinHeight" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Foreground" Value="{DynamicResource IotAccentBrush}" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+    <Style Selector="Button.link:pointerover">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource IotAccentHoverBrush}" />
+    </Style>
+
+    <Style Selector="Button.icon">
+        <Setter Property="Width" Value="36" />
+        <Setter Property="Height" Value="36" />
+        <Setter Property="MinWidth" Value="36" />
+        <Setter Property="MinHeight" Value="36" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
+    <Style Selector="Button.tabMore">
+        <Setter Property="Width" Value="20" />
+        <Setter Property="Height" Value="20" />
+        <Setter Property="MinWidth" Value="0" />
+        <Setter Property="MinHeight" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="Foreground" Value="{DynamicResource IotTextSecondary}" />
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+    <Style Selector="Button.tabMore:pointerover">
+        <Setter Property="Background" Value="{DynamicResource IotAccentSubtleBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource IotAccentBrush}" />
+    </Style>
+
+    <Style Selector="Button.tabClose">
+        <Setter Property="Width" Value="18" />
+        <Setter Property="Height" Value="18" />
+        <Setter Property="MinWidth" Value="0" />
+        <Setter Property="MinHeight" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="CornerRadius" Value="9" />
+        <Setter Property="Foreground" Value="{DynamicResource IotTextSecondary}" />
+    </Style>
+    <Style Selector="Button.tabClose:pointerover">
+        <Setter Property="Background" Value="{DynamicResource IotDangerBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource IotOnAccentBrush}" />
+    </Style>
+
+    <Style Selector="Button.protocolCard">
+        <Setter Property="MinHeight" Value="118" />
+        <Setter Property="Padding" Value="14" />
+        <Setter Property="Background" Value="{DynamicResource IotCardBg}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource IotBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="{DynamicResource IotCardCorner}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    </Style>
+    <Style Selector="Button.protocolCard:pointerover">
+        <Setter Property="Background" Value="{DynamicResource IotCardHoverBg}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource IotAccentBrush}" />
+    </Style>
+
+    <Style Selector="Button.historyOpen">
+        <Setter Property="MinHeight" Value="0" />
+        <Setter Property="Padding" Value="8" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="CornerRadius" Value="{DynamicResource IotControlCorner}" />
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+    <Style Selector="Button.historyOpen:pointerover">
+        <Setter Property="Background" Value="{DynamicResource IotCardBg}" />
+    </Style>
+    <Style Selector="Button.historyDelete">
+        <Setter Property="Width" Value="24" />
+        <Setter Property="Height" Value="24" />
+        <Setter Property="MinWidth" Value="0" />
+        <Setter Property="MinHeight" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Foreground" Value="{DynamicResource IotTextSecondary}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="FontSize" Value="13" />
+    </Style>
+    <Style Selector="Button.historyDelete:pointerover">
+        <Setter Property="Background" Value="{DynamicResource IotDangerBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource IotOnAccentBrush}" />
+    </Style>
+
+    <Style Selector="ToggleButton.seg">
+        <Setter Property="MinHeight" Value="30" />
+        <Setter Property="Padding" Value="10,0" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="CornerRadius" Value="{DynamicResource IotControlCorner}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{DynamicResource IotBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="{DynamicResource IotTextSecondary}" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border x:Name="PART_Border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+                    <ContentPresenter Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      Padding="{TemplateBinding Padding}"
+                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    <Style Selector="ToggleButton.seg:pointerover">
+        <Setter Property="Background" Value="{DynamicResource IotCardHoverBg}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource IotAccentBrush}" />
+    </Style>
+    <Style Selector="ToggleButton.seg:checked">
+        <Setter Property="Background" Value="{DynamicResource IotAccentBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource IotAccentBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource IotOnAccentBrush}" />
+    </Style>
+    <Style Selector="ToggleButton.seg:checked:pointerover">
+        <Setter Property="Background" Value="{DynamicResource IotAccentHoverBrush}" />
+    </Style>
+    <Style Selector="ToggleButton.seg:disabled">
+        <Setter Property="Opacity" Value="0.5" />
+    </Style>
+
+    <Style Selector="CheckBox">
+        <Setter Property="MinHeight" Value="30" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Foreground" Value="{DynamicResource IotTextSecondary}" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+    <Style Selector="CheckBox:disabled">
+        <Setter Property="Opacity" Value="0.5" />
+    </Style>
+
+    <Style Selector="TextBox">
+        <Setter Property="MinHeight" Value="36" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="CornerRadius" Value="{DynamicResource IotControlCorner}" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="10,0" />
+        <Setter Property="Background" Value="{DynamicResource IotCardBg}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource IotBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    <Style Selector="TextBox.mono">
+        <Setter Property="FontFamily" Value="Cascadia Mono, Consolas, Menlo, monospace" />
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+
+    <Style Selector="ComboBox">
+        <Setter Property="MinHeight" Value="36" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="CornerRadius" Value="{DynamicResource IotControlCorner}" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Padding" Value="12,0" />
+        <Setter Property="Background" Value="{DynamicResource IotCardBg}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource IotBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <Style Selector="TabControl">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
+    <Style Selector="TabItem">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="{DynamicResource IotTextSecondary}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="MinHeight" Value="38" />
+        <Setter Property="Padding" Value="12,0" />
+        <Setter Property="Margin" Value="0,0,4,0" />
+        <Setter Property="CornerRadius" Value="{DynamicResource IotControlCorner}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border x:Name="RootBorder"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+                    <ContentPresenter Content="{TemplateBinding Header}"
+                                      ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                      Padding="{TemplateBinding Padding}"
+                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+    <Style Selector="TabItem:pointerover">
+        <Setter Property="Background" Value="{DynamicResource IotCardHoverBg}" />
+    </Style>
+    <Style Selector="TabItem:selected">
+        <Setter Property="Background" Value="{DynamicResource IotCardBg}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource IotBorderBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource IotTextPrimary}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+
+    <Style Selector="ListBox">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+    <Style Selector="ListBoxItem">
+        <Setter Property="Padding" Value="8,4" />
+        <Setter Property="MinHeight" Value="0" />
+        <Setter Property="CornerRadius" Value="6" />
+    </Style>
+    <Style Selector="ListBoxItem:pointerover">
+        <Setter Property="Background" Value="{DynamicResource IotCardHoverBg}" />
+    </Style>
+
+    <Style Selector="ContextMenu">
+        <Setter Property="Background" Value="{DynamicResource IotCardBg}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource IotBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    <Style Selector="MenuItem">
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="MinHeight" Value="32" />
+        <Setter Property="Padding" Value="10,4" />
+    </Style>
+
+    <Style Selector="GridSplitter.splitter">
+        <Setter Property="Width" Value="4" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="ResizeDirection" Value="Columns" />
+        <Setter Property="Cursor" Value="SizeWestEast" />
+    </Style>
+    <Style Selector="GridSplitter.splitter:pointerover">
+        <Setter Property="Background" Value="{DynamicResource IotAccentSubtleBrush}" />
+    </Style>
+
+</Styles>

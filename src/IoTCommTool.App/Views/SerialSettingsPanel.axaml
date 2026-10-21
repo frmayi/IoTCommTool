@@ -1,0 +1,40 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:IoTCommTool.App.ViewModels"
+             x:Class="IoTCommTool.App.Views.SerialSettingsPanel"
+             x:DataType="vm:SerialPortSettingsViewModel">
+    <Grid ColumnDefinitions="2*,*,*,*,*" ColumnSpacing="10">
+        <StackPanel Classes="field">
+            <TextBlock Classes="fieldLabel" Text="串口" />
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="6">
+                <ComboBox ItemsSource="{Binding PortNames}"
+                          SelectedItem="{Binding SelectedPortName, Mode=TwoWay}" />
+                <Button Grid.Column="1"
+                        Classes="ghost small"
+                        Content="刷新"
+                        Command="{Binding RefreshPortsCommand}"
+                        VerticalAlignment="Center"
+                        ToolTip.Tip="重新枚举本机串口" />
+            </Grid>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Classes="field">
+            <TextBlock Classes="fieldLabel" Text="波特率" />
+            <TextBox Text="{Binding BaudRate, Mode=TwoWay}" />
+        </StackPanel>
+        <StackPanel Grid.Column="2" Classes="field">
+            <TextBlock Classes="fieldLabel" Text="数据位" />
+            <ComboBox ItemsSource="{Binding DataBitsOptions}"
+                      SelectedIndex="{Binding DataBitsIndex, Mode=TwoWay}" />
+        </StackPanel>
+        <StackPanel Grid.Column="3" Classes="field">
+            <TextBlock Classes="fieldLabel" Text="校验" />
+            <ComboBox ItemsSource="{Binding ParityOptions}"
+                      SelectedIndex="{Binding ParityIndex, Mode=TwoWay}" />
+        </StackPanel>
+        <StackPanel Grid.Column="4" Classes="field">
+            <TextBlock Classes="fieldLabel" Text="停止位" />
+            <ComboBox ItemsSource="{Binding StopBitsOptions}"
+                      SelectedIndex="{Binding StopBitsIndex, Mode=TwoWay}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

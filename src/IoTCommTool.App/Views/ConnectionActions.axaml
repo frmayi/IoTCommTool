@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:IoTCommTool.App.ViewModels"
+             x:Class="IoTCommTool.App.Views.ConnectionActions"
+             x:DataType="vm:ConnectionViewModelBase">
+    <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+        <Border Classes="statusPill" ToolTip.Tip="{Binding StateText}">
+            <StackPanel Orientation="Horizontal" Spacing="6">
+                <Ellipse Classes="statusDot" Fill="{Binding StatusBrush}" VerticalAlignment="Center" />
+                <TextBlock Classes="inlineText"
+                           Text="{Binding StateText}"
+                           MaxWidth="190"
+                           TextTrimming="CharacterEllipsis" />
+            </StackPanel>
+        </Border>
+        <Button Classes="primary"
+                Content="{Binding ConnectButtonText}"
+                Command="{Binding ToggleConnectionCommand}"
+                MinWidth="76" />
+    </StackPanel>
+</UserControl>

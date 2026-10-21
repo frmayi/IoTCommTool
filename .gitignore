@@ -1,0 +1,65 @@
+# ---------------------------------------------------------------------------
+# .NET / Avalonia build output
+# ---------------------------------------------------------------------------
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+artifacts/
+publish/
+TestResults/
+BenchmarkDotNet.Artifacts/
+*.binlog
+*.trx
+*.coverage
+*.coveragexml
+*.nupkg
+*.snupkg
+
+# ---------------------------------------------------------------------------
+# IDE / editor
+# ---------------------------------------------------------------------------
+.vs/
+.idea/
+.vscode/
+_ReSharper*/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.DotSettings.user
+*.userprefs
+*.resharper
+*.VC.db
+*.VC.opendb
+*.swp
+*.swo
+
+# ---------------------------------------------------------------------------
+# OS files
+# ---------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------------------------------------------------------------------------
+# Local runtime data / logs
+# ---------------------------------------------------------------------------
+*.db
+*.db-shm
+*.db-wal
+ui-settings.json
+*.log
+logs/
+*.dmp
+*.pid
+
+# ---------------------------------------------------------------------------
+# Tooling caches / local environment probes
+# ---------------------------------------------------------------------------
+.dotnet/
+.nuget/
+node_modules/
+/.dsh-write-test

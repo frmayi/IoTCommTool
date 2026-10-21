@@ -1,0 +1,61 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Styles.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="IotBackground" Color="#F4F6FA" />
+                    <SolidColorBrush x:Key="IotSidebarBg" Color="#EEF2F8" />
+                    <SolidColorBrush x:Key="IotCardBg" Color="#FFFFFF" />
+                    <SolidColorBrush x:Key="IotCardHoverBg" Color="#F7F9FD" />
+                    <SolidColorBrush x:Key="IotBorderBrush" Color="#E4E8F0" />
+                    <SolidColorBrush x:Key="IotAccentBrush" Color="#2F6BFF" />
+                    <SolidColorBrush x:Key="IotAccentHoverBrush" Color="#245CE0" />
+                    <SolidColorBrush x:Key="IotAccentPressedBrush" Color="#1D4FC4" />
+                    <SolidColorBrush x:Key="IotAccentSubtleBrush" Color="#142F6BFF" />
+                    <SolidColorBrush x:Key="IotTextPrimary" Color="#172033" />
+                    <SolidColorBrush x:Key="IotTextSecondary" Color="#667085" />
+                    <SolidColorBrush x:Key="IotOnAccentBrush" Color="#FFFFFF" />
+                    <SolidColorBrush x:Key="IotDangerPressedBrush" Color="#B83C3C" />
+                    <SolidColorBrush x:Key="IotSuccessBrush" Color="#12B76A" />
+                    <SolidColorBrush x:Key="IotWarningBrush" Color="#F79009" />
+                    <SolidColorBrush x:Key="IotDangerBrush" Color="#E23D3D" />
+                    <SolidColorBrush x:Key="IotInsetBg" Color="#F8FAFC" />
+                    <SolidColorBrush x:Key="IotOverlayBrush" Color="#73000000" />
+                    <SolidColorBrush x:Key="IotSelectionBrush" Color="#1F2F6BFF" />
+
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="IotBackground" Color="#0F1117" />
+                    <SolidColorBrush x:Key="IotSidebarBg" Color="#141821" />
+                    <SolidColorBrush x:Key="IotCardBg" Color="#191D27" />
+                    <SolidColorBrush x:Key="IotCardHoverBg" Color="#202634" />
+                    <SolidColorBrush x:Key="IotBorderBrush" Color="#2A3040" />
+                    <SolidColorBrush x:Key="IotAccentBrush" Color="#4C84FF" />
+                    <SolidColorBrush x:Key="IotAccentHoverBrush" Color="#3B73E8" />
+                    <SolidColorBrush x:Key="IotAccentPressedBrush" Color="#2F61CC" />
+                    <SolidColorBrush x:Key="IotAccentSubtleBrush" Color="#334C84FF" />
+                    <SolidColorBrush x:Key="IotTextPrimary" Color="#E8ECF4" />
+                    <SolidColorBrush x:Key="IotTextSecondary" Color="#98A2B3" />
+                    <SolidColorBrush x:Key="IotOnAccentBrush" Color="#FFFFFF" />
+                    <SolidColorBrush x:Key="IotDangerPressedBrush" Color="#D94F4F" />
+                    <SolidColorBrush x:Key="IotSuccessBrush" Color="#32D583" />
+                    <SolidColorBrush x:Key="IotWarningBrush" Color="#FDB022" />
+                    <SolidColorBrush x:Key="IotDangerBrush" Color="#F97066" />
+                    <SolidColorBrush x:Key="IotInsetBg" Color="#11151D" />
+                    <SolidColorBrush x:Key="IotOverlayBrush" Color="#A6000000" />
+                    <SolidColorBrush x:Key="IotSelectionBrush" Color="#334C84FF" />
+
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+
+
+            <CornerRadius x:Key="IotCardCorner">12</CornerRadius>
+            <CornerRadius x:Key="IotControlCorner">8</CornerRadius>
+            <CornerRadius x:Key="IotPillCorner">12</CornerRadius>
+            <Thickness x:Key="IotCardPadding">16</Thickness>
+        </ResourceDictionary>
+    </Styles.Resources>
+
+</Styles>

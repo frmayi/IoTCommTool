@@ -1,0 +1,144 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:IoTCommTool.App.ViewModels"
+             xmlns:models="using:IoTCommTool.App.Models"
+             x:Class="IoTCommTool.App.Views.SendPanel"
+             x:DataType="vm:RawConnectionViewModelBase"
+             HorizontalContentAlignment="Stretch"
+             VerticalContentAlignment="Stretch">
+    <Border Classes="card" VerticalAlignment="Stretch">
+        <Grid RowDefinitions="Auto,*,Auto,Auto,Auto,Auto" RowSpacing="10">
+            <Grid Grid.Row="0" ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                <StackPanel Spacing="2" VerticalAlignment="Center">
+                    <TextBlock Classes="cardTitle" Text="手动发送" />
+                    <TextBlock Classes="caption" Text="{Binding PayloadInfoText}" />
+                </StackPanel>
+                <ComboBox Grid.Column="1"
+                          Width="164"
+                          ItemsSource="{Binding SendHistory}"
+                          SelectedItem="{Binding SelectedHistory, Mode=TwoWay}"
+                          PlaceholderText="发送历史"
+                          ToolTip.Tip="选择最近发送过的报文进行回填">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="vm:SendHistoryItem">
+                            <StackPanel Spacing="1" MaxWidth="230">
+                                <TextBlock Text="{Binding Preview}"
+                                           FontFamily="Cascadia Mono, Consolas, Menlo, monospace"
+                                           FontSize="12"
+                                           TextTrimming="CharacterEllipsis" />
+                                <TextBlock Classes="caption" FontSize="11" Text="{Binding Meta}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Grid>
+
+            <TextBox x:Name="InputBox"
+                     Grid.Row="1"
+                     Text="{Binding InputText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     MinHeight="130"
+                     VerticalContentAlignment="Top"
+                     Padding="10,8"
+                     FontFamily="Cascadia Mono, Consolas, Menlo, monospace"
+                     FontSize="12"
+                     PlaceholderText="Hex 示例：01 03 00 00 00 02&#10;ASCII 示例：AT+VER?（支持 \r \n \t \xNN 转义）"
+                     KeyDown="OnInputKeyDown" />
+
+            <WrapPanel Grid.Row="2" Orientation="Horizontal">
+                <ToggleButton Classes="seg" Content="Hex" IsChecked="{Binding DisplayHex}" Margin="0,0,6,6" />
+                <ToggleButton Classes="seg" Content="ASCII" IsChecked="{Binding DisplayAscii}" Margin="0,0,6,6" />
+                <CheckBox Content="附加 4 字节序号"
+                          IsChecked="{Binding AppendSequence}"
+                          Margin="2,0,10,6"
+                          ToolTip.Tip="在报文前追加 4 字节大端序号" />
+                <CheckBox Content="CRLF"
+                          IsChecked="{Binding AppendCrLf}"
+                          IsVisible="{Binding !DisplayHex}"
+                          Margin="0,0,10,6"
+                          ToolTip.Tip="ASCII 模式末尾追加 0D 0A" />
+                <CheckBox Content="CRC16"
+                          IsChecked="{Binding AppendCrc16}"
+                          IsVisible="{Binding DisplayHex}"
+                          Margin="0,0,10,6"
+                          ToolTip.Tip="Hex 模式末尾追加 Modbus CRC16（低字节在前）" />
+            </WrapPanel>
+
+            <Grid Grid.Row="3" ColumnDefinitions="Auto,Auto,Auto,*" ColumnSpacing="8">
+                <Button Classes="primary"
+                        Content="发送"
+                        Command="{Binding SendManualCommand}"
+                        MinWidth="88"
+                        ToolTip.Tip="Ctrl+Enter 发送当前报文" />
+                <Button Grid.Column="1"
+                        Classes="ghost"
+                        Content="循环发送…"
+                        Click="OnOpenCyclicSendClick" />
+                <Button Grid.Column="2"
+                        Classes="ghost"
+                        Content="ASCII 表"
+                        Click="OnOpenAsciiTableClick"
+                        ToolTip.Tip="查看 ASCII 码对照表" />
+                <TextBlock Grid.Column="3"
+                           Classes="caption"
+                           Text="Ctrl+Enter 发送"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center" />
+            </Grid>
+
+            <Border Grid.Row="4" Classes="inset" Padding="10,8">
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                    <TextBlock Text="{Binding StatsText}"
+                               Classes="caption"
+                               TextWrapping="Wrap"
+                               VerticalAlignment="Center" />
+                    <Button Grid.Column="1"
+                            Classes="ghost small"
+                            Content="清零"
+                            Command="{Binding ResetStatsCommand}" />
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="5"
+                    Classes="inset"
+                    Padding="10,8"
+                    IsVisible="{Binding SupportsRegisterPacket}">
+                <StackPanel Spacing="8">
+                    <Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="6">
+                        <CheckBox Content="连接后自动发送注册包"
+                                  IsChecked="{Binding RegisterEnabled}"
+                                  VerticalAlignment="Center"
+                                  ToolTip.Tip="连接成功后立即发送一次下方内容；按自身格式解析后原样发送，不附加序号/CRLF/CRC16" />
+                        <ToggleButton Grid.Column="2"
+                                      Classes="seg"
+                                      Content="Hex"
+                                      IsChecked="{Binding RegisterHex}" />
+                        <ToggleButton Grid.Column="3"
+                                      Classes="seg"
+                                      Content="ASCII"
+                                      IsChecked="{Binding RegisterAscii}" />
+                    </Grid>
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                        <TextBox Text="{Binding RegisterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 FontFamily="Cascadia Mono, Consolas, Menlo, monospace"
+                                 FontSize="12"
+                                 PlaceholderText="注册包内容，可从右侧填入本机 MAC" />
+                        <ComboBox Grid.Column="1"
+                                  Width="168"
+                                  ItemsSource="{Binding MacChoices}"
+                                  SelectedItem="{Binding SelectedMacChoice, Mode=TwoWay}"
+                                  PlaceholderText="填入本机 MAC"
+                                  ToolTip.Tip="选择一张网卡，按当前格式把它的 MAC 填入注册包内容">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="models:LocalMacOption">
+                                    <TextBlock Text="{Binding Display}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>
